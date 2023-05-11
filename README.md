@@ -71,6 +71,6 @@ python manage.py runserver
 ```
 
 
-##Contributing
+## Contributing
 
 Contributions to HealthHub are welcome! If you encounter any issues or have suggestions for improvements, please create a new issue or submit a pull request.
