@@ -2,6 +2,17 @@
 
 HealthHub is a Django-based web application designed to streamline the management of clinics, doctors, patients, appointments, and medical records. It provides a platform for patients to schedule appointments with doctors, access medical records, and receive prescriptions. It also offers administrative features for managing clinics and user roles.
 
+# Table of Contents
+
+- [HealthHub](#healthhub)
+- [Table of Contents](#table-of-contents)
+  - [Features](#features)
+  - [UML Diagram](#uml-diagram)
+  - [Demo](#demo)
+    - [Dashboard](#dashboard)
+  - [Installation](#installation)
+  - [Contributing](#contributing)
+
 ## Features
 
 - User registration and authentication system for doctors, patients, secretaries, and administrators.
