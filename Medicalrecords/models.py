@@ -16,10 +16,10 @@ class RendezVous(models.Model):
         Medecin, on_delete=models.CASCADE, related_name='medecin')
     clinique = models.ForeignKey(
         Clinique, on_delete=models.CASCADE, related_name='clinique')
-    specialite = models.CharField(max_length=255)
-    code = models.CharField(max_length=255)
-    status = models.CharField(max_length=255)
-    pdf = models.FileField(upload_to='rendezvous_pdfs/')
+    specialite = models.CharField(max_length=255, blank=True)
+    code = models.CharField(max_length=255, blank=True)
+    status = models.CharField(max_length=255, default='pending')
+    pdf = models.FileField(upload_to='media/rendezvous_pdfs/', blank=True)
 
     def __str__(self):
         return self.code
@@ -34,10 +34,10 @@ class Ordonnance(models.Model):
         Medecin, on_delete=models.CASCADE, related_name='ordonnance_medecin')
     clinique = models.ForeignKey(
         Clinique, on_delete=models.CASCADE, related_name='ordonnance_clinique')
-    observation = models.TextField()
-    prescription = models.TextField()
-    diagnostic = models.TextField()
-    pdf = models.FileField(upload_to='ordonnance_pdfs/')
+    observation = models.TextField(blank=True)
+    prescription = models.TextField(blank=True)
+    diagnostic = models.TextField(blank=True)
+    pdf = models.FileField(upload_to='media/ordonnance_pdfs/', blank=True)
 
     def __str__(self):
         return self.patient.nom
@@ -55,7 +55,7 @@ class DossierMedical(models.Model):
     ordonnance = models.ForeignKey(
         Ordonnance, on_delete=models.CASCADE, related_name='dossier_ordonnance')
     Maladie = models.CharField(max_length=255)
-    description = models.TextField()
+    description = models.TextField(blank=True)
 
     def __str__(self):
         return self.patient.nom
