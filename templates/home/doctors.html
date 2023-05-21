@@ -1,29 +1,52 @@
-<section id="doctors" class="doctors">
+
+
+<section
+  class="section-header bg-secondary pb-8 pb-md-11 mb-4 mb-lg-6 text-white"
+>
   <div class="container">
-    <div class="section-title">
-      <h2>Doctors</h2>
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-10 col-lg-8 text-center">
+        <h1 class="display-2 text-white mb-3">Doctors</h1>
+        <p class="lead">
+          Our platform empowers doctors to focus on delivering quality care by reducing administrative burdens and improving workflow efficiency.
+        </p>
+      </div>
     </div>
+  </div>
+</section>
 
-    <div class="row">
+<section class="section section-lg pt-0">
+  <div class="container mt-n8 mt-lg-n10 z-2">
+    <div class="row mt-7">
+
+
       {% for medecin in medecins %}
-      <div class="col-lg-6 mt-4">
-        <div class="member d-flex align-items-start">
-          <div class="pic">
-            <img src="/{{medecin.image}}" class="img-fluid" alt="" />
-          </div>
-          <div class="member-info">
-            <h4>{{medecin.prenom}} {{medecin.nom}}</h4>
-            <span
-              >{{medecin.specialite}} | {{medecin.clinique|truncatewords:5}}
-            </span>
-            <p>{{medecin.description|truncatewords:15}}</p>
 
-            <a href="#appointment" class="appointment-btn mt-4">Show more</a>
+      <div class="col-12 col-md-6 col-lg-4 mb-7">
+        <div class="card shadow border-gray-300 text-center">
+          <div class="profile-thumbnail mx-auto mt-n6">
+            <img
+              src="/{{medecin.image}}"
+              class="card-img-top rounded-circle border-0"
+              alt="{{medecin.nom}} Avatar"
+            />
+          </div>
+          <div class="card-body">
+            <h2 class="h4 card-title mb-2">{{medecin.prenom}} {{medecin.nom}}</h2>
+            <span class="card-subtitle text-gray fw-normal">{{medecin.specialite}}</span><br>
+            <span class="card-subtitle text-muted fw-normal">{{medecin.clinique|truncatewords:5}}</span>
+    
+            <p class="card-text my-2">
+              {{medecin.description|truncatewords:15}}
+            </p>
+            <button class="btn btn-outline-tertiary" type="button">Show more</button>
           </div>
         </div>
       </div>
+{% endfor %}
 
-      {% endfor %}
-    </div>
+
+
+
   </div>
 </section>
