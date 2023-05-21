@@ -12,15 +12,19 @@ HealthHub is a Django-based web application designed to streamline the managemen
 - Administrative functionalities for managing clinics, users, and appointments.
 - Medical record management for doctors to create prescriptions, diagnose patients, and store relevant information.
 
-
 ## UML Diagram
 
 ![UML Diagram](myapp_models.png)
 
 The UML diagram provides an overview of the main entities and their relationships in the HealthHub application.
 
+## Demo
 
+### Dashboard
 
+The dashboard provides to the admin an overview of the application. It displays the number of clinics, doctors, patients, and appointments in the system. It also provides links to the different management pages.
+
+![Dashboard](img_git/Dashboard.png)
 
 ## Installation
 
@@ -29,7 +33,6 @@ The UML diagram provides an overview of the main entities and their relationship
 ```shell
 git clone https://github.com/your-username/HealthHub.git
 ```
-
 
 2. Create a virtual environment:
 
@@ -51,13 +54,11 @@ venv\Scripts\activate
 
 4. Install the project dependencies:
 
-
 ```shell
 pip install -r requirements.txt
 ```
 
 5. Run database migrations:
-
 
 ```shell
 python manage.py migrate
@@ -65,11 +66,9 @@ python manage.py migrate
 
 6. Start the development server:
 
-
 ```shell
 python manage.py runserver
 ```
-
 
 ## Contributing
 
