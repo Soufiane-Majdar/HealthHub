@@ -12,7 +12,7 @@ class User(models.Model):
     username = models.CharField(max_length=255, unique=True)
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=128)
-    tele = models.CharField(max_length=20)
+    tele = models.CharField(max_length=20, blank=True)
     role = models.CharField(max_length=255, blank=True)
 
     def __str__(self):
@@ -63,9 +63,15 @@ class Secretaire(User):
 
 
 class Patient(User):
-    address = models.CharField(max_length=255)
-    sexe = models.CharField(max_length=255)
-    date_naissance = models.DateField()
+    # sexe choices
+    SEXE_CHOICES = [
+        ('H', 'Homme'),
+        ('F', 'Femme'),
+    ]
+
+    address = models.CharField(max_length=255, blank=True)
+    sexe = models.CharField(max_length=255, choices=SEXE_CHOICES, blank=True)
+    date_naissance = models.DateField(blank=True, null=True)
 
     # define role as patient
     def __init__(self, *args, **kwargs):
