@@ -10,4 +10,4 @@ def home(request):
     cliniques = Clinique.objects.all()
     medecins = Medecin.objects.all()
 
-    return render(request, 'index.html', {"medecins": medecins})
+    return render(request, 'index.html', {"medecins": medecins, "cliniques": cliniques})

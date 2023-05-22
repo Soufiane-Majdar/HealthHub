@@ -1,0 +1,37 @@
+<section id="clinics" class="section-header pb-8 pb-md-11 mb-lg-6 text-darck">
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-12 col-md-10 col-lg-8 text-center">
+        <h1 class="display-2 text-darck mb-3">Clinics</h1>
+        <p class="lead">
+          Through our platform, patients can easily find and book appointments
+          with experienced doctors at top clinics in their area.
+        </p>
+      </div>
+    </div>
+
+    <div class="row mb-5">
+      {% for clinique in cliniques %}
+      <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
+        <div class="card shadow">
+          <img
+            src="/{{clinique.image}}"
+            class="card-img-top rounded-top"
+            height="150px"
+            alt="{{clinique.nom}}"
+          />
+          <div class="card-body">
+            <span class="h6 icon-tertiary small"
+              ><span class="fa fa-map-marker me-2"></span
+              >{{clinique.adresse|truncatewords:5}}</span
+            >
+            <h3 class="h5 card-title mt-3">{{clinique.nom|truncatewords:3}}</h3>
+            <p class="card-text">{{clinique.description|truncatewords:15}}</p>
+            <a href="#" class="btn btn-primary btn-sm">Learn More</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
