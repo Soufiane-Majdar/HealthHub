@@ -41,7 +41,7 @@ class Medecin(User):
     ]
     specialite = models.CharField(max_length=255, choices=SPECIALITES_CHOICES)
     clinique = models.ForeignKey(Clinique, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='media/medecin_images/')
+    image = models.ImageField(upload_to='media/medecin_images/', blank=True)
     description = models.TextField()
     address = models.CharField(max_length=255)
     jours_disponible = models.CharField(max_length=255)

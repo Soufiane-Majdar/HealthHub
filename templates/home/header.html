@@ -1,11 +1,11 @@
-<header class="header-global">
+<header class="header-global bg-secondary">
     <nav
       id="navbar-main"
       aria-label="Primary navigation"
       class="navbar navbar-main navbar-expand-lg navbar-theme-primary headroom navbar-dark"
     >
       <div class="container position-relative">
-        <a class="navbar-brand me-lg-5" href="">
+        <a class="navbar-brand me-lg-5" href="{% url 'home'%}">
           <img
             class="navbar-brand-dark"
             src="/static/assets/img/brand/healthhub-logo.png"
@@ -21,7 +21,7 @@
           <div class="navbar-collapse-header">
             <div class="row">
               <div class="col-6 collapse-brand">
-                <a href="">
+                <a href="{% url 'home'%}">
                   <img
                     src="/static/assets/img/brand/healthhub-logo.png"
                     alt="HealthHub logo"
@@ -45,8 +45,8 @@
           <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
             <li class="nav-item">
               <a
-                href="#aboutus"
-                class="nav-link dropdown-toggle"
+                href="{% url 'home'%}#aboutus"
+                class="nav-link "
                 aria-expanded="false"
               >
                 About Us
@@ -55,8 +55,8 @@
 
             <li class="nav-item">
               <a
-                href="#services"
-                class="nav-link dropdown-toggle"
+                href="{% url 'home'%}#services"
+                class="nav-link "
                 aria-expanded="false"
               >
               Services
@@ -65,8 +65,8 @@
 
             <li class="nav-item">
               <a
-              href="#doctors"
-              class="nav-link dropdown-toggle"
+              href="{% url 'home'%}#doctors"
+              class="nav-link "
               aria-expanded="false"
               >
               Doctors
@@ -75,8 +75,8 @@
 
             <li class="nav-item">
               <a
-                href="#clinics"
-                class="nav-link dropdown-toggle"
+                href="{% url 'home'%}#clinics"
+                class="nav-link "
                 aria-expanded="false"
               >
               Clinics
@@ -145,18 +145,53 @@
         </div>
 
         <div class="d-flex align-items-center">
+
+          {% if request.session.USER %}
           <a
+            class="btn btn-outline-gray-100 mb-sm-3 me-2 mb-md-0"
             href=""
-            target="_blank"
-            class="btn btn-outline-gray-100 d-none d-lg-inline me-md-3"
-            ><span class="fas fa-user me-2"></span> Login</a
+            ><span class="far fa-user-circle me-2 link-spanne"></span
+            >Profile</a
           >
           <a
-            href=""
-            target="_blank"
-            class="btn btn-tertiary"
-            > Make Appointement</a
+            class="btn btn-outline-gray-100 mb-sm-3 me-2 mb-md-0"
+            href="{% url 'logout'%}"
+            ><span class="me-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-box-arrow-right"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"
+                />
+              </svg> </span
+            >Logout</a
           >
+
+          <a
+          href=""
+          target="_blank"
+          class="btn btn-tertiary"
+          > Make Appointement</a
+        >
+          {% else %}
+          <a
+          class="btn btn-outline-gray-100 d-none d-lg-inline me-md-3"
+            href="{% url 'login'%}"
+            ><span class="far fa-user-circle me-2 link-spanne"></span>login</a
+          >
+          {% endif %}
+
+
           <button
             class="navbar-toggler ms-2"
             type="button"
