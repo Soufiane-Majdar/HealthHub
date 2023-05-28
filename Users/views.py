@@ -25,12 +25,26 @@ def login(request):
             # check if user exists
             check_user = User.objects.filter(
                 email=request.POST['email'], password=request.POST['password'])
+
             if check_user:
-                # print(check_user[0].userName)
+                # check role of the user and add it to session
+                # if check_user[0].role == "medecin":
+                #     check_user = Medecin.objects.filter(
+                #         email=request.POST['email'], password=request.POST['password'])
+                #     # Add User to Session
+                #     request.session['USER'] = {
+                #         'role': check_user[0].role,
+                #         'userName': check_user[0].username,
+                #         'fName': check_user[0].prenom,
+                #         'lName': check_user[0].nom,
+                #         'email': check_user[0].email,
+                #         'image': check_user[0].image,
+                #         'specialite': check_user[0].specialite,
+                #         'description': check_user[0].description,
+                #         'address': check_user[0].address,
+                #     }
 
                 # Add User to Session
-
-                # uname=str(check_user[0].userName)
                 request.session['USER'] = {
                     'role': check_user[0].role,
                     'userName': check_user[0].username,

@@ -47,7 +47,7 @@ class Medecin(User):
     jours_disponible = models.CharField(max_length=255)
     heure_disponible = models.CharField(max_length=255)
 
-    # define role as medecin
+    # define role as medecin 
     def __init__(self, *args, **kwargs):
         super(Medecin, self).__init__(*args, **kwargs)
         self.role = 'medecin'
