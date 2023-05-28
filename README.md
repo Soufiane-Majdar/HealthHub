@@ -25,7 +25,7 @@ HealthHub is a Django-based web application designed to streamline the managemen
 
 ## UML Diagram
 
-![UML Diagram](myapp_models.png)
+![UML Diagram](uml/myapp_models.png)
 
 The UML diagram provides an overview of the main entities and their relationships in the HealthHub application.
 
