@@ -48,6 +48,12 @@ The login page allows users to authenticate themselves using (email, password) a
 
 ![faceLogin](img_git/face_recognation_login.png)
 
+### Profile
+
+The profile page displays the user's personal information and allows them to update their information.
+
+![Profile](img_git/profile.png)
+
 ## Installation
 
 1. Clone the repository:
