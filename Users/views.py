@@ -148,14 +148,25 @@ def signup(request):
     return render(request, 'users/signup.html', {"medecins": medecins, "cliniques": cliniques})
 
 
+
+
 def profile(request):
     if 'USER' in request.session:
-        title = "Profile"
-        print(request.session['USER'])
-        return render(request, 'users/profile.html', {'title': title})
+        user = request.session['USER']
+        # Fetch user information from the database based on the user's ID based on there role
+        if user['role'] == "medecin":
+            user_info = Medecin.objects.get(id=user['id'])
+        elif user['role'] == "admin":
+            user_info = Admin.objects.get(id=user['id'])
+        elif user['role'] == "patient":
+            user_info = Patient.objects.get(id=user['id'])
+        else:
+            user_info = None
+        
+        return render(request, 'users/profile.html', {'user_info': user_info})
     else:
-        title = "Home"
-        return render(request, 'home/home.html', {'title': title})
+        return redirect('login')
+
 
 
 def Host(request):
