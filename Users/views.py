@@ -78,7 +78,7 @@ def face_login(user):
                 cv2.putText(img, name+", Allowed", (x1+6, y2-6),
                             cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
                 print(name)
-                cv2.imshow('Webcam', img)
+                cv2.imshow('Login', img)
                 k = cv2.waitKey(1) & 0xFF
 
                 # print(k)
