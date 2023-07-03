@@ -54,6 +54,12 @@ The profile page displays the user's personal information and allows them to upd
 
 ![Profile](img_git/Profile.png)
 
+### Doctor detail
+
+The doctor details page displays the doctor's information.
+
+![Doctor details](img_git/medecin_details.html)
+
 ### Clinic  details
 
 The clinic details page displays the clinic's information.

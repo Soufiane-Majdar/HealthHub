@@ -39,7 +39,7 @@
             <p class="card-text my-2">
               {{medecin.description|truncatewords:15}}
             </p>
-            <button class="btn btn-outline-tertiary" type="button">Show more</button>
+            <a href="{% url "medecin_details" medecin.id%}" class="btn btn-outline-tertiary"  type="button">Show more</a>
           </div>
         </div>
       </div>

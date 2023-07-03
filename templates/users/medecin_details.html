@@ -1,0 +1,77 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+<!-- Section Profile -->
+<section class="section section-profile mt-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card">
+          <div class="card-body text-center">
+            {% if user_info.image %}
+            <img
+              src="/{{ user_info.image }}"
+              class="avatar img-fluid rounded-circle mb-3"
+              alt="Avatar"
+            />
+            {% else %}
+            <img
+              src="/static/imgs/avatar.jpeg"
+              class="avatar img-fluid rounded-circle mb-3"
+              alt="Avatar"
+            />
+            {% endif %}
+            <h3 class="mb-3">{{ user_info.prenom }} {{ user_info.nom }}</h3>
+            <p class="text-muted">{{ user_info.role }}</p>
+            <a href="#" class="btn btn-primary btn-block mb-4">Make Appointments</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-6">
+                <h4>About</h4>
+                <p class="text-muted">{{ user_info.description }}</p>
+              </div>
+              <div class="col-sm-6">
+                <h4>Contact Information</h4>
+                <ul class="list-unstyled">
+                  <li>
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:{{ user_info.email }}"
+                      >{{ user_info.email }}</a
+                    >
+                  </li>
+                  <li><i class="fas fa-phone"></i> {{ user_info.tele }}</li>
+                  <li>
+                    <i class="fas fa-map-marker-alt"></i> {{ user_info.address}}
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-6">
+                <h4>Specialization</h4>
+                <p class="text-muted">{{ user_info.specialite }}</p>
+              </div>
+              <div class="col-sm-6">
+                <h4>Working Hours</h4>
+                <ul class="list-unstyled">
+                  <li>Monday: 9:00 AM - 5:00 PM</li>
+                  <li>Tuesday: 9:00 AM - 5:00 PM</li>
+                  <li>Wednesday: 9:00 AM - 5:00 PM</li>
+                  <li>Thursday: 9:00 AM - 5:00 PM</li>
+                  <li>Friday: 9:00 AM - 1:00 PM</li>
+                  <li>Saturday: Closed</li>
+                  <li>Sunday: Closed</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

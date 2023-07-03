@@ -148,8 +148,6 @@ def signup(request):
     return render(request, 'users/signup.html', {"medecins": medecins, "cliniques": cliniques})
 
 
-
-
 def profile(request):
     if 'USER' in request.session:
         user = request.session['USER']
@@ -162,11 +160,15 @@ def profile(request):
             user_info = Patient.objects.get(id=user['id'])
         else:
             user_info = None
-        
+
         return render(request, 'users/profile.html', {'user_info': user_info})
     else:
         return redirect('login')
 
+
+def medecin_details(request, id):
+    medecin = Medecin.objects.get(id=id)
+    return render(request, 'users/medecin_details.html', {'user_info': medecin})
 
 
 def Host(request):
