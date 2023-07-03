@@ -11,3 +11,11 @@ def home(request):
     medecins = Medecin.objects.all()
 
     return render(request, 'home.html', {"medecins": medecins, "cliniques": cliniques})
+
+
+#  clinique  details
+def clinique_details(request, clinique_id):
+    clinique = Clinique.objects.get(id=clinique_id)
+    medecins_clinique = Medecin.objects.filter(clinique=clinique_id)
+
+    return render(request, 'clinic/clinique_details.html', {"clinique": clinique, "medecins_clinique": medecins_clinique})

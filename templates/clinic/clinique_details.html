@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!-- Clinique Details -->
+<section class="section section-md">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <img src="{{ clinique.image.url }}" alt="{{ clinique.nom }}" class="img-fluid rounded">
+      </div>
+      <div class="col-md-6">
+        <h1 class="mb-4">{{ clinique.nom }}</h1>
+        <p class="mb-4">{{ clinique.description }}</p>
+        <ul class="list-unstyled">
+          <li><i class="fas fa-map-marker-alt"></i> {{ clinique.adresse }}</li>
+          <li><i class="fas fa-phone"></i> {{ clinique.tele }}</li>
+          <li><i class="fas fa-envelope"></i> {{ clinique.email }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Medecins in Clinique -->
+<section class="section section-md">
+  <div class="container">
+    <h2 class="mb-4">Medecins in {{ clinique.nom }}</h2>
+    <div class="row">
+      {% for medecin in medecins_clinique %}
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ medecin.nom }} {{ medecin.prenom }}</h5>
+            <p class="card-text mb-2">{{ medecin.specialite }}</p>
+            <ul class="list-unstyled">
+              <li><i class="fas fa-phone"></i> {{ medecin.tele }}</li>
+              <li><i class="fas fa-envelope"></i> {{ medecin.email }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}
