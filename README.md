@@ -37,7 +37,6 @@ The dashboard provides to the admin an overview of the application. It displays 
 
 ![Dashboard](img_git/Dashboard.png)
 
-
 ### Login
 
 The login page allows users to authenticate themselves using (email, password) and face recognation. It also provides links to the registration page and password reset page.
@@ -47,7 +46,7 @@ The login page allows users to authenticate themselves using (email, password) a
 
 ### face recognation login
 
-![face recognation login](img_git/testion _face_login.png)
+![face_recognation_login](img_git/testion \_face_login.png)
 
 ## Installation
 
