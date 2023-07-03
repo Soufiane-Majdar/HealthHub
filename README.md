@@ -54,6 +54,13 @@ The profile page displays the user's personal information and allows them to upd
 
 ![Profile](img_git/Profile.png)
 
+### Clinic  details
+
+The clinic details page displays the clinic's information.
+
+![Clinic details](img_git/clinique_details.png)
+
+
 ### Make Appointment as a patient
 
 The appointment page allows patients to book appointments with doctors at specific clinics. It displays the available doctors and their associated clinics. The patient can select a doctor and a clinic and choose a date and time for the appointment.
