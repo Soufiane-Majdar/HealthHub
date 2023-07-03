@@ -46,7 +46,7 @@ The login page allows users to authenticate themselves using (email, password) a
 
 ### face recognation login
 
-![face_recognation_login](img_git/testion_face_login.png)
+![faceLogin](img_git/face_recognation_login.png)
 
 ## Installation
 
