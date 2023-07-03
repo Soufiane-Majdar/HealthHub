@@ -26,6 +26,12 @@ class Admin(User):
         self.role = 'admin'
 
 
+def upload_to(instance, filename):
+    user_name = instance.nom
+    new_filename = f"{user_name}.jpg"
+    return f"media/medecin_images/{new_filename}"
+
+
 class Medecin(User):
     SPECIALITES_CHOICES = [
         ('cardiology', 'Cardiology'),
@@ -41,16 +47,17 @@ class Medecin(User):
     ]
     specialite = models.CharField(max_length=255, choices=SPECIALITES_CHOICES)
     clinique = models.ForeignKey(Clinique, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='media/medecin_images/', blank=True)
+    image = models.ImageField(upload_to=upload_to, blank=True)
     description = models.TextField()
     address = models.CharField(max_length=255)
     jours_disponible = models.CharField(max_length=255)
     heure_disponible = models.CharField(max_length=255)
 
-    # define role as medecin 
+    # define role as medecin
     def __init__(self, *args, **kwargs):
         super(Medecin, self).__init__(*args, **kwargs)
         self.role = 'medecin'
+        #  Modify the filename here so that it includes the user "nom"  exemple: "nom.jpg"
 
 
 class Secretaire(User):
