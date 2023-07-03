@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Section Make Appointment -->
+<div class="section section-md mt-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <div class="card shadow">
+          <div class="card-body">
+            <h2 class="card-title">Make an Appointment</h2>
+            <form method="POST" action="{% url 'make_appointment' %}">
+              {% csrf_token %}
+              <div class="mb-3">
+                <label for="date" class="form-label">Date</label>
+                <input type="date" class="form-control" id="date" name="date" required>
+              </div>
+              <div class="mb-3">
+                <label for="time" class="form-label">Time</label>
+                <input type="time" class="form-control" id="time" name="time" required>
+              </div>
+              {% if request.session.USER.role == "patient" %}
+                {% if request.session.USER.id %}
+                  <input type="hidden" name="patient_id" value="{{ request.session.USER.id }}">
+                {% else %}
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                  </div>
+                {% endif %}
+                <div class="mb-3">
+                  <label for="clinique" class="form-label">Clinique</label>
+                  <select class="form-select" id="clinique" name="clinique" required>
+                    <option value="" selected disabled>Select a Clinique</option>
+                    {% for clinique in cliniques %}
+                      <option value="{{ clinique.id }}">{{ clinique.nom }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="specialite" class="form-label">Specialite</label>
+                  <input type="text" class="form-control" id="specialite" name="specialite" required>
+                </div>
+              {% elif request.session.USER.role == "medecin" %}
+                {% if request.session.USER.id %}
+                  <input type="hidden" name="medecin_id" value="{{ request.session.USER.id }}">
+                {% else %}
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                  </div>
+                {% endif %}
+                <div class="mb-3">
+                  <label for="patient_id" class="form-label">Patient ID</label>
+                  <input type="text" class="form-control" id="patient_id" name="patient_id" required>
+                </div>
+                <div class="mb-3">
+                  <label for="clinique" class="form-label">Clinique</label>
+                  <select class="form-select" id="clinique" name="clinique" required>
+                    <option value="" selected disabled>Select a Clinique</option>
+                    {% for clinique in cliniques %}
+                      <option value="{{ clinique.id }}">{{ clinique.nom }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              {% endif %}
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

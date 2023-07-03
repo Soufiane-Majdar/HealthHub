@@ -54,6 +54,16 @@ The profile page displays the user's personal information and allows them to upd
 
 ![Profile](img_git/Profile.png)
 
+### Make Appointment as a patient
+
+The appointment page allows patients to book appointments with doctors at specific clinics. It displays the available doctors and their associated clinics. The patient can select a doctor and a clinic and choose a date and time for the appointment.
+
+![Make Appointment](img_git/appointment_as_Patient.png)
+
+### Make Appointment as a Secretaire
+
+![Make Appointment](img_git/appointment_as_Secretaire.png)
+
 ## Installation
 
 1. Clone the repository:
