@@ -52,7 +52,7 @@ The login page allows users to authenticate themselves using (email, password) a
 
 The profile page displays the user's personal information and allows them to update their information.
 
-![Profile](img_git/profile.png)
+![Profile](img_git/Profile.png)
 
 ## Installation
 
