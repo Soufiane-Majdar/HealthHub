@@ -138,11 +138,49 @@ def login(request):
 ############ end Login to Session ###########
 
 
+############ Sign Up to Session ############
 def signup(request):
-    cliniques = Clinique.objects.all()
-    medecins = Medecin.objects.all()
+    if request.method == 'POST':
+        username = request.POST['userName']
+        first_name = request.POST['fName']
+        last_name = request.POST['lName']
+        email = request.POST['email']
+        password = request.POST['password']
+        confirm_password = request.POST['password_confirm']
 
-    return render(request, 'users/signup.html', {"medecins": medecins, "cliniques": cliniques})
+        cliniques = Clinique.objects.all()
+        medecins = Medecin.objects.all()
+
+        if password != confirm_password:
+            title = "Sign Up"
+            message = ['passwords not match!', 'danger']
+            return render(request, 'users/signup.html', {"medecins": medecins, "cliniques": cliniques, 'title': title, 'message': message})
+
+        if User.objects.filter(email=email).exists():
+            title = "Sign Up"
+            message = ['email already exists!', 'danger']
+            return render(request, 'users/signup.html', {"medecins": medecins, "cliniques": cliniques, 'title': title, 'message': message})
+
+        if User.objects.filter(username=username).exists():
+            title = "Sign Up"
+            message = ['username already exists!', 'danger']
+            return render(request, 'users/signup.html', {"medecins": medecins, "cliniques": cliniques, 'title': title, 'message': message})
+
+        user = Patient(
+            username=username, nom=first_name, prenom=last_name, email=email, password=password)
+
+        user.save()
+
+        title = "Sign Up"
+        message = ['Your account has been created successfully!', 'success']
+        return render(request, 'users/signup.html', {"medecins": medecins, "cliniques": cliniques, 'message': message})
+
+    else:
+        cliniques = Clinique.objects.all()
+        medecins = Medecin.objects.all()
+        title = "Sign Up"
+        return render(request, 'users/signup.html', {"medecins": medecins, "cliniques": cliniques})
+############ end Sign Up ###########
 
 
 def profile(request):
