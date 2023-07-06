@@ -1,11 +1,12 @@
 from django.shortcuts import render, HttpResponse, redirect
-
+from django.http import JsonResponse
 
 # Face-recognitions
 import cv2
 import numpy as np
 import face_recognition
 import os
+
 
 # Create your views here.
 
@@ -23,19 +24,17 @@ def logout(request):
 ############ end Logout form Session ############
 
 
-############ Face-recognitions login ############
+# ############ Face-recognitions login ############
+
 def face_login(user):
     path = 'media/medecin_images'
     images = []
     classNames = []
-    myList = os.listdir(path)
-    names = ""
-    print(myList)
-    for cl in myList:
-        curImg = cv2.imread(f'{path}/{cl}')
+
+    for cl in os.listdir(path):
+        curImg = cv2.imread(os.path.join(path, cl))
         images.append(curImg)
         classNames.append(os.path.splitext(cl)[0])
-    print(classNames)
 
     def findEncodings(images):
         encodeList = []
@@ -46,11 +45,14 @@ def face_login(user):
         return encodeList
 
     encodeListKnown = findEncodings(images)
-    print('Encoding Complete')
 
     cap = cv2.VideoCapture(0)
+    k = 0
 
-    while True:
+    # while try 5 times
+    nbr_try = 0
+    while nbr_try < 5:
+        nbr_try += 1
         success, img = cap.read()
         # img = captureScreen()
         imgS = cv2.resize(img, (0, 0), None, 0.25, 0.25)
@@ -86,15 +88,11 @@ def face_login(user):
                     # close the webcam
                     cv2.destroyAllWindows()
                     return True
-                elif name != "":
-                    cv2.destroyAllWindows()
-                    return False
-                elif k == ord('q'):
-                    # close the webcam if the user click on 'q':
-                    cv2.destroyAllWindows()
-                    return False
 
-############ end Face-recognitions login ############
+                if nbr_try == 5:
+                    cv2.destroyAllWindows()
+                    return False
+# ############ end Face-recognitions login ############
 
 
 def login(request):
@@ -112,15 +110,15 @@ def login(request):
                 if check_user[0].role == "medecin" and face_login(check_user[0].nom) == True:
 
                     request.session['USER'] = {
-                        'id': check_user[0].id, 'email': check_user[0].email, 'role': check_user[0].role}
+                        'id': check_user[0].id, 'email': check_user[0].email, 'username': check_user[0].username, 'role': check_user[0].role}
                     return redirect('home')
                 elif check_user[0].role == "admin":
                     request.session['USER'] = {
-                        'id': check_user[0].id, 'email': check_user[0].email, 'role': check_user[0].role}
+                        'id': check_user[0].id, 'email': check_user[0].email, 'username': check_user[0].username, 'role': check_user[0].role}
                     return redirect('home')
                 elif check_user[0].role == "patient":
                     request.session['USER'] = {
-                        'id': check_user[0].id, 'email': check_user[0].email, 'role': check_user[0].role}
+                        'id': check_user[0].id, 'email': check_user[0].email, 'username': check_user[0].username, 'role': check_user[0].role}
                     return redirect('home')
                 else:
                     title = "Login"

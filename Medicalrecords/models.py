@@ -7,6 +7,8 @@ from Users.models import *
 # Create your models here.
 
 
+
+
 class RendezVous(models.Model):
     date = models.DateField()
     time = models.TimeField()
@@ -22,7 +24,7 @@ class RendezVous(models.Model):
     pdf = models.FileField(upload_to='media/rendezvous_pdfs/', blank=True)
 
     def __str__(self):
-        return self.code
+        return self.patient.nom
 
 
 class Ordonnance(models.Model):

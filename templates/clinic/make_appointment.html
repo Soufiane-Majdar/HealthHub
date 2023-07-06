@@ -1,85 +1,47 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<!-- Section Make Appointment -->
-<div class="section section-md mt-4">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8 offset-md-2">
-        <div class="card shadow">
-          <div class="card-body">
-            <h2 class="card-title">Make an Appointment</h2>
-            <form method="POST" action="{% url 'make_appointment' %}">
-              {% csrf_token %}
-              <div class="mb-3">
-                <label for="date" class="form-label">Date</label>
-                <input type="date" class="form-control" id="date" name="date" required>
-              </div>
-              <div class="mb-3">
-                <label for="time" class="form-label">Time</label>
-                <input type="time" class="form-control" id="time" name="time" required>
-              </div>
-              {% if request.session.USER.role == "patient" %}
-                {% if request.session.USER.id %}
-                  <input type="hidden" name="patient_id" value="{{ request.session.USER.id }}">
-                {% else %}
-                  <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                  </div>
-                  <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
-                  </div>
-                {% endif %}
-                <div class="mb-3">
-                  <label for="clinique" class="form-label">Clinique</label>
-                  <select class="form-select" id="clinique" name="clinique" required>
-                    <option value="" selected disabled>Select a Clinique</option>
-                    {% for clinique in cliniques %}
-                      <option value="{{ clinique.id }}">{{ clinique.nom }}</option>
-                    {% endfor %}
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <label for="specialite" class="form-label">Specialite</label>
-                  <input type="text" class="form-control" id="specialite" name="specialite" required>
-                </div>
-              {% elif request.session.USER.role == "medecin" %}
-                {% if request.session.USER.id %}
-                  <input type="hidden" name="medecin_id" value="{{ request.session.USER.id }}">
-                {% else %}
-                  <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                  </div>
-                  <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
-                  </div>
-                {% endif %}
-                <div class="mb-3">
-                  <label for="patient_id" class="form-label">Patient ID</label>
-                  <input type="text" class="form-control" id="patient_id" name="patient_id" required>
-                </div>
-                <div class="mb-3">
-                  <label for="clinique" class="form-label">Clinique</label>
-                  <select class="form-select" id="clinique" name="clinique" required>
-                    <option value="" selected disabled>Select a Clinique</option>
-                    {% for clinique in cliniques %}
-                      <option value="{{ clinique.id }}">{{ clinique.nom }}</option>
-                    {% endfor %}
-                  </select>
-                </div>
-              {% endif %}
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <h1 class="mt-5 mb-4">Make Appointment</h1>
+        <form method="POST" action="{% url 'make_appointment' %}">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="date">Date:</label>
+            <input type="date" class="form-control" id="date" name="date" required>
           </div>
-        </div>
+          <div class="form-group">
+            <label for="time">Time:</label>
+            <input type="time" class="form-control" id="time" name="time" required>
+          </div>
+          <div class="form-group">
+            <label for="patient">Patient:</label>
+            <input type="text" class="form-control" id="patient" name="patient" value="{{ request.session.USER.username }}" readonly>
+          </div>
+          <div class="form-group">
+            <label for="medecin">Medecin:</label>
+            <select class="form-control" id="medecin" name="medecin" required>
+              {% for medecin in medecins %}
+                <option value="{{ medecin.id }}">{{ medecin.username }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="clinique">Clinique:</label>
+            <select class="form-control" id="clinique" name="clinique" required>
+              {% for clinique in cliniques %}
+                <option value="{{ clinique.id }}">{{ clinique.nom }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="specialite">Specialite:</label>
+            <input type="text" class="form-control" id="specialite" name="specialite">
+          </div>
+          <button type="submit" class="btn btn-primary mb-4 mt-2">Submit</button>
+        </form>
       </div>
     </div>
   </div>
-</div>
-
 {% endblock %}
