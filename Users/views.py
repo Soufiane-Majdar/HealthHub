@@ -108,7 +108,6 @@ def login(request):
             if check_user:
                 # check role of the user and add it to session
                 if check_user[0].role == "medecin" and face_login(check_user[0].nom) == True:
-
                     request.session['USER'] = {
                         'id': check_user[0].id, 'email': check_user[0].email, 'username': check_user[0].username, 'role': check_user[0].role}
                     return redirect('home')
@@ -152,10 +151,13 @@ def profile(request):
         # Fetch user information from the database based on the user's ID based on there role
         if user['role'] == "medecin":
             user_info = Medecin.objects.get(id=user['id'])
+            return render(request, 'users/profile.html', {'user_info': user_info})
         elif user['role'] == "admin":
             user_info = Admin.objects.get(id=user['id'])
         elif user['role'] == "patient":
             user_info = Patient.objects.get(id=user['id'])
+            return render(request, 'users/patient_profile.html', {'patient': user_info})
+
         else:
             user_info = None
 

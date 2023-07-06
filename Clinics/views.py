@@ -7,10 +7,15 @@ from Users.models import Medecin
 
 
 def home(request):
+    is_a_patient = False
+    if 'USER' in request.session:
+        if request.session['USER']['role'] == 'patient':
+            is_a_patient = True
+
     cliniques = Clinique.objects.all()
     medecins = Medecin.objects.all()
 
-    return render(request, 'home.html', {"medecins": medecins, "cliniques": cliniques})
+    return render(request, 'home.html', {"medecins": medecins, "cliniques": cliniques, "is_a_patient": is_a_patient})
 
 
 #  clinique  details

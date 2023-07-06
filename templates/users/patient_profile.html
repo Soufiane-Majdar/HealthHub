@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container mt-6">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <h1 class="mt-5 mb-4">Patient Information</h1>
+        
+
+        <div class="card ">
+          <div class="card-body">
+            <h5 class="card-title">Personal Information</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><strong>Name:</strong> {{ patient.nom }} {{ patient.prenom }}</li>
+              <li class="list-group-item"><strong>Username:</strong> {{ patient.username }}</li>
+              <li class="list-group-item"><strong>Email:</strong> {{ patient.email }}</li>
+              <li class="list-group-item"><strong>Address:</strong> {{ patient.address }}</li>
+              <li class="list-group-item"><strong>Sex:</strong> {{ patient.get_sexe_display }}</li>
+              <li class="list-group-item"><strong>Phone Number:</strong> {{ patient.tele }}</li>
+              <li class="list-group-item"><strong>Date of Birth:</strong> {{ patient.date_naissance }}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card mt-4">
+          <div class="card-body">
+            <h5 class="card-title">Medical Information</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><strong>Medical ID:</strong> {{ patient.id }}</li>
+              <!-- Add more medical information fields as needed -->
+              <li class="list-group-item"><strong>Rendezvous:</strong>
+                <ul>
+                  {% for rendezvous in patient.patient.all %}
+                    <li>Date: {{ rendezvous.date }}, Time: {{ rendezvous.time }}, Clinique: {{ rendezvous.clinique.nom }}</li>
+                  {% endfor %}
+                </ul>
+              </li>
+
+              <li class="list-group-item"><strong>Prescriptions:</strong>
+                <ul>
+                  {% for prescription in patient.prescription.all %}
+                    <li>Medicament: {{ prescription.medicament.nom }}, Dose: {{ prescription.dose }}, Date: {{ prescription.date }}</li>
+                  {% endfor %}
+                </ul>
+
+                </li>
+
+                <li class="list-group-item"><strong>Consultations:</strong>
+                  <ul>
+                    {% for consultation in patient.consultation.all %}
+                      <li>Date: {{ consultation.date }}, Time: {{ consultation.time }}, Clinique: {{ consultation.clinique.nom }}</li>
+                    {% endfor %}
+                  </ul>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

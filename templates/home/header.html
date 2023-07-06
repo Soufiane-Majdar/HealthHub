@@ -177,12 +177,15 @@
             >Logout</a
           >
 
+          {% if is_a_patient %}
+
           <a
           href="{% url 'make_appointment'%}"
           target="_blank"
           class="btn btn-tertiary"
           > Make Appointement</a
         >
+          {% endif %}
           {% else %}
           <a
           class="btn btn-outline-gray-100 d-none d-lg-inline me-md-3"
